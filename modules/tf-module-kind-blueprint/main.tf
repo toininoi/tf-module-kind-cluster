@@ -38,6 +38,15 @@ module "platform_operator" {
   ca_tmp_file  = module.kind_cluster.ca_tmp_file
 }
 
+module "eso_infra" {
+  source                  = "../tf-module-eso-infra"
+  cluster_name            = var.cluster_name
+  kubernetes_ca_cert      = base64decode(module.kind_cluster.cluster_ca_certificate)
+  vault_infra_secret_path = var.vault_infra_secret_path
+  vault_addr              = var.vault_addr
+}
+
+
 
 # module "ingress_nginx" {
 #   source = "../tf-module-ingress-nginx"
@@ -45,15 +54,3 @@ module "platform_operator" {
 #   depends_on = [module.calico]
 # }
 #
-# module "eso_infra" {
-#   source                  = "../tf-module-eso-infra"
-#   cluster_name            = var.cluster_name
-#   kubernetes_ca_cert      = base64decode(module.kind_cluster.cluster_ca_certificate)
-#   vault_infra_secret_path = var.vault_infra_secret_path
-#   vault_addr              = var.vault_addr
-# }
-
-
-
-//TODO Add Operator to provisioning flow
-
