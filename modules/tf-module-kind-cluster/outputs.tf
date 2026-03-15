@@ -18,4 +18,10 @@ output "kubeconfig" {
   value = kind_cluster.this.kubeconfig
 }
 
+output "vault_ca_pem" {
+  value = local.ca_pem
+}
 
+output "ca_tmp_file" {
+  value = local.ca_tmp_file
+}

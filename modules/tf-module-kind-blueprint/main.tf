@@ -32,6 +32,12 @@ module "openEBS" {
   depends_on = [module.calico]
 }
 
+module "platform_operator" {
+  source       = "../tf-module-platform-operator"
+  vault_ca_pem = module.kind_cluster.vault_ca_pem
+  ca_tmp_file  = module.kind_cluster.ca_tmp_file
+}
+
 
 # module "ingress_nginx" {
 #   source = "../tf-module-ingress-nginx"
